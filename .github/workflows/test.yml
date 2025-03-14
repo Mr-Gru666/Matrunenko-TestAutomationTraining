@@ -37,21 +37,21 @@ jobs:
 
       - name: Run tests with Gradle
         run: ./gradlew clean test
-        continue-on-error: true  # Позволяет продолжить выполнение, даже если тесты упадут
+        continue-on-error: true 
 
       - name: Generate Allure Report
         run: ./gradlew allureReport
-        if: always()  # Всегда выполняется, даже если тесты упали
+        if: always()  
 
-      - name: Upload Allure Results
+      - name: Upload Allure Report
         uses: actions/upload-artifact@v4
         with:
-          name: allure-results
-          path: build/allure-results
+          name: allure-report
+          path: build/reports/allure-report 
 
   deploy:
     needs: test
-    if: always()  # Деплой отчета всегда выполняется, даже если test упал
+    if: always()  
     runs-on: ubuntu-latest
 
     steps:
@@ -61,11 +61,12 @@ jobs:
       - name: Download Allure Report
         uses: actions/download-artifact@v4
         with:
-          name: allure-results
-          path: allure-results
+          name: allure-report
+          path: allure-report  
 
       - name: Deploy Allure Report to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./build/allure-report
+          publish_dir: ./allure-report 
+          publish_branch: gh-pages 
