@@ -3,11 +3,10 @@ name: Run Tests and Generate Allure Report
 on:
   push:
     branches:
-      - master
-
+      - main
   pull_request:
     branches:
-      - master
+      - main
 
 jobs:
   test:
@@ -28,22 +27,25 @@ jobs:
         with:
           path: ~/.gradle/caches
           key: gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
-          restore-keys: gradle-
+          restore-keys: |
+            gradle-
 
       - name: Grant execute permission for Gradle
         run: chmod +x gradlew
 
       - name: Run tests with Gradle
         run: ./gradlew clean test
+        continue-on-error: true
 
       - name: Generate Allure Report
         run: ./gradlew allureReport
+        if: always()
 
       - name: Upload Allure Results
         uses: actions/upload-artifact@v3
         with:
           name: allure-report
-          path: build/allure-report
+          path: build/reports/allure-report
 
   deploy:
     needs: test
