@@ -1,0 +1,4 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"passed","Fri Mar 14 13:52:11 UTC 2025","Fri Mar 14 13:52:14 UTC 2025","2911","","tests.api.ApiTest","","tests.api.ApiTest","getPostShouldReturnCorrectData","getPostShouldReturnCorrectData()",""
+"broken","Fri Mar 14 13:52:16 UTC 2025","Fri Mar 14 13:52:17 UTC 2025","1205","","tests.ui.GoogleSearchTest","","tests.ui.GoogleSearchTest","googleSearchShouldWork","googleSearchShouldWork()",""
+"passed","Fri Mar 14 13:52:15 UTC 2025","Fri Mar 14 13:52:16 UTC 2025","568","","tests.api.WireMockTest","","tests.api.WireMockTest","testMockedApiResponse","testMockedApiResponse()",""
